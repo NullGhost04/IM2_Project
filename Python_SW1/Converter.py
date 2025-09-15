@@ -1,14 +1,16 @@
-def converternidiscaya(*dolyar, **bigayan):
+def convert_currency(dolyar, peso=57.17, japanyen=146.67):
     results = []
     for d in dolyar:
-        peso = d * bigayan["peso"]
-        yen = d * bigayan["yen"]
-        results.append([d, peso, yen])
+        convertpeso = d * peso
+        convertyen = d * japanyen
+        results.append((d, convertpeso, convertyen))
     return results
 
+inputhere = input("Enter currency in ($): ")
+dolyarlist = [int(x.strip()) for x in inputhere.split(",")]
 
-results = converternidiscaya(59, 200, 500, peso=57.17, yen=146.67)
+results = convert_currency(dolyarlist)
 
-print(f"{'dolyar($)':<10}{'peso(P)':<15}{'yen(Y)':<15}")
-for row in results:
-    print(f"{row[0]:<10}{row[1]:<15.2f}{row[2]:<15.2f}")
+print(f"\n{'Dollar($)':<10}{'Phil Peso(P)':<15}{'Jpn Yen(Y)':<15}")
+for d, p, y in results:
+    print(f"{d:<10}{p:<15.2f}{y:<15.2f}")
